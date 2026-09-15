@@ -1,3 +1,29 @@
 body {
     background-color: #3b3a3a;
+    display: flex;
+    height: 100dvh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+#gameBoard {
+    display: flex;
+    height: 90%;
+    aspect-ratio: 1;
+    align-items: stretch;
+    flex-direction: column;
+
+}
+
+.square-row {
+    flex: 1;
+    display: flex;
+    background-color: black;
+}
+
+.square {
+    flex: 1;
+    border: white 3px solid;
+    color: white;
 }
