@@ -72,13 +72,17 @@ const gameControls = (() => {
     function addSymbol(e) {
         const symbolArray = [...squares].map(element => element.textContent);
         const blankSquaresCount = symbolArray.filter(item => item === '').length;
-
+        // console.log(e.target.id);
+        console.log(e.target.textContent);
+        if (e.target.textContent) {
+            return;
+        }
             blankSquaresCount % 2 === 0 ? e.target.textContent = 'X' : e.target.textContent = 'O';
 
 
         console.log(symbolArray);
         console.log(blankSquaresCount);
-        console.log(e.target.textContent);
+        // console.log(e.target.textContent);
     }
 
     function clickSquare() {
