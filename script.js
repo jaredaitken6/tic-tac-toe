@@ -65,8 +65,6 @@ const gameControls = (() => {
 
 
 const endGame = (() => {
-     
-     
 
     function threeSymbols() {
         let squares = document.querySelectorAll('.square');
@@ -83,7 +81,7 @@ const endGame = (() => {
         const thirdColumn = document.querySelectorAll('.square-row >  *:nth-child(3)');
         // console.log(thirdColumn[0].textContent);
         // console.log(thirdRowChildren[0].textContent);
-        // console.log(squaresArray[0].textContent);
+        
 
         // check if there are three symbols in a row or column or diagonal.
 
@@ -109,7 +107,41 @@ const endGame = (() => {
         }
 
         // column wins
-        console.log(firstColumn);
+        const firstColumnArray = Array.from(firstColumn, node => node.textContent);
+        const firstColumnArrayIsFull = firstColumnArray.includes('');
+        const firstColumnTheSame = firstColumnArray => firstColumnArray.every(val => val === firstColumnArray[0]);
+        // console.log(firstColumnTheSame(firstColumnArray));
+
+        const secondColumnArray = Array.from(secondColumn, node => node.textContent);
+        const secondColumnArrayIsFull = secondColumnArray.includes('');
+        const secondColumnTheSame = secondColumnArray => secondColumnArray.every(val => val === secondColumnArray[0]);
+
+        const thirdColumnArray = Array.from(thirdColumn, node => node.textContent);
+        const thirdColumnArrayIsFull = thirdColumnArray.includes('');
+        const thirdColumnTheSame = thirdColumnArray => thirdColumnArray.every(val => val === thirdColumnArray[0]);
+
+        if (firstColumnTheSame(firstColumnArray) && !firstColumnArrayIsFull || secondColumnTheSame(secondColumnArray) && !secondColumnArrayIsFull || thirdColumnTheSame(thirdColumnArray) && !thirdColumnArrayIsFull)  {
+            console.log("You win");
+            gameBoard.classList.add('unclickable');
+            // gameBoard.classList.remove('unclickable');
+        }
+
+        // diagonal wins
+        const topLeftRightArray = [squaresArray[0].textContent, squaresArray[4].textContent, squaresArray[8].textContent];
+        const topLeftRightArrayIsFull = topLeftRightArray.includes('');
+        const topLeftRightTheSame = topLeftRightArray => topLeftRightArray.every(val => val === topLeftRightArray[0]);
+        
+        const bottomLeftRightArray = [squaresArray[6].textContent, squaresArray[4].textContent, squaresArray[2].textContent];
+        const bottomLeftRightArrayIsFull = bottomLeftRightArray.includes('');
+        const bottomLeftRightTheSame = bottomLeftRightArray => bottomLeftRightArray.every(val => val === bottomLeftRightArray[0]);
+
+        if (topLeftRightTheSame(topLeftRightArray) && !topLeftRightArrayIsFull || bottomLeftRightTheSame(bottomLeftRightArray) && !bottomLeftRightArrayIsFull)  {
+            console.log("You win");
+            gameBoard.classList.add('unclickable');
+            // gameBoard.classList.remove('unclickable');
+        }
+        // console.log(squaresArray[3].textContent);
+        // console.log(topLeftRightTheSame(topLeftRightArray));
     }
 
     return {
