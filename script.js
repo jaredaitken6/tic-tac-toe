@@ -16,7 +16,6 @@ what has more than one instance?
 */
 
     
-
 const setupGameBoard = (() => {
     const gameBoardParent = document.querySelector('#gameBoard');
     let squareCount = 0;
@@ -35,54 +34,23 @@ const setupGameBoard = (() => {
         }
     }
 })();
-        
 
-function Player(title, symbol) {
-  this.title = title;
-  this.symbol = symbol;
-}
-
-let player1 = new Player('Player 1', 'X');
-let player2 = new Player('Player 2', 'O');
-
-/*
-player1 goes first
-*/
-
-console.log(document.querySelector('#square1').textContent);
-// When tile is clicked player2 places an O and player1 places an X
-// factory function
-// function gameplay() {
-//     const tileNullCount = gameBoardModule.filter(item => item === null).length;
-
-//     function playerTurn() {
-//         return tileNullCount % 2 === 0 ? 'player2' : 'player1';
-//     }
-    
-//     console.log(playerTurn());
-// }
-
-// gameplay();
 
 const gameControls = (() => {
     let squares = document.querySelectorAll('.square');
-    
 
-    
     function addSymbol(e) {
         const symbolArray = [...squares].map(element => element.textContent);
         const blankSquaresCount = symbolArray.filter(item => item === '').length;
-        // console.log(e.target.id);
-        console.log(e.target.textContent);
+
         if (e.target.textContent) {
             return;
         }
-            blankSquaresCount % 2 === 0 ? e.target.textContent = 'X' : e.target.textContent = 'O';
+        
+        blankSquaresCount % 2 === 0 ? e.target.textContent = 'X' : e.target.textContent = 'O';
 
+        endGame.threeSymbols();
 
-        console.log(symbolArray);
-        console.log(blankSquaresCount);
-        // console.log(e.target.textContent);
     }
 
     function clickSquare() {
@@ -95,4 +63,57 @@ const gameControls = (() => {
 
 })();
 
+
+const endGame = (() => {
+     
+     
+
+    function threeSymbols() {
+        let squares = document.querySelectorAll('.square');
+        let gameBoard = document.querySelector('#gameBoard');
+        let firstRowParent = gameBoard.firstElementChild;
+        let firstRowChildren = firstRowParent.children;
+        let secondRowParent = gameBoard.children[1];
+        let secondRowChildren = secondRowParent.children;
+        let thirdRowParent = gameBoard.children[2];
+        let thirdRowChildren = thirdRowParent.children;
+        let squaresArray = [...squares];
+        const firstColumn = document.querySelectorAll('.square-row > :first-child');
+        const secondColumn = document.querySelectorAll('.square-row >  *:nth-child(2)');
+        const thirdColumn = document.querySelectorAll('.square-row >  *:nth-child(3)');
+        // console.log(thirdColumn[0].textContent);
+        // console.log(thirdRowChildren[0].textContent);
+        // console.log(squaresArray[0].textContent);
+
+        // check if there are three symbols in a row or column or diagonal.
+
+        // row wins
+        const firstRowArray = Array.from(firstRowChildren, node => node.textContent);
+        const firstRowArrayIsFull = firstRowArray.includes('');
+        const firstRowTheSame = firstRowArray => firstRowArray.every(val => val === firstRowArray[0]);
+
+        const secondRowArray = Array.from(secondRowChildren, node => node.textContent);
+        const secondRowArrayIsFull = secondRowArray.includes('');
+        const secondRowTheSame = secondRowArray => secondRowArray.every(val => val === secondRowArray[0]);
+
+        const thirdRowArray = Array.from(thirdRowChildren, node => node.textContent);
+        const thirdRowArrayIsFull = thirdRowArray.includes('');
+        const thirdRowTheSame = thirdRowArray => thirdRowArray.every(val => val === thirdRowArray[0]);
+        // console.log(secondRowTheSame(secondRowArray));
+        // console.log(thirdRowTheSame(thirdRowArray));
+        // console.log(!thirdRowArrayIsFull);
+        if (thirdRowTheSame(thirdRowArray) && !thirdRowArrayIsFull || secondRowTheSame(secondRowArray) && !secondRowArrayIsFull || firstRowTheSame(firstRowArray) && !firstRowArrayIsFull)  {
+            console.log("You win");
+            gameBoard.classList.add('unclickable');
+            // gameBoard.classList.remove('unclickable');
+        }
+
+        // column wins
+        console.log(firstColumn);
+    }
+
+    return {
+        threeSymbols
+    };
+})();
 

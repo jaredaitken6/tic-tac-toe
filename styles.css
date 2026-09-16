@@ -27,3 +27,8 @@ body {
     border: white 3px solid;
     color: white;
 }
+
+.unclickable {
+  pointer-events: none; 
+  opacity: 0.6;         
+}
