@@ -1,11 +1,120 @@
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+*:not(dialog) {
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
 body {
-    background-color: #3b3a3a;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+#root, #__next {
+  isolation: isolate;
+}
+/* end of css reset */
+
+/* fonts */
+
+@font-face {
+    font-family: 'Exo';
+    src: url('./transfonterexo-2/Exo-Regular.woff2') format('woff2'),
+        url('./transfonterexo-2/Exo-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Exo';
+    src: url('./transfonterexo-2/Exo-Thin.woff2') format('woff2'),
+        url('./transfonterexo-2/Exo-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Exo';
+    src: url('./transfonterexo-2/Exo-Black.woff2') format('woff2'),
+        url('./transfonterexo-2/Exo-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Exo';
+    src: url('./transfonterexo-2/Exo-Bold.woff2') format('woff2'),
+        url('./transfonterexo-2/Exo-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Exo';
+    src: url('./transfonterexo-2/Exo-ExtraBold.woff2') format('woff2'),
+        url('./transfonterexo-2/Exo-ExtraBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Exo';
+    src: url('./transfonterexo-2/Exo-Light.woff2') format('woff2'),
+        url('./transfonterexo-2/Exo-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* end of fonts */
+
+body {
+    background-color: #030303;
     display: flex;
     flex-direction: column;
     height: 100vh;
     width: 100%;
     align-items: center;
     justify-content: center;
+    font-family: 'Exo', sans-serif;
+    font-weight: bold;
 }
 
 .verses-title {
@@ -56,14 +165,16 @@ body {
   opacity: 0.6;         
 }
 
-/* Modal styling */
+/* Modal styles */
 dialog {
-    border: none;
+    border: #ffffff 3px solid;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     padding: 24px;
     width: 90%;
     max-width: 500px;
+    background-color: #000000;
+    color: white;
 }
 
 /* Backdrop (overlay behind the modal) */
@@ -72,7 +183,12 @@ dialog::backdrop {
     backdrop-filter: blur(3px);
 }
 
-/* Modal content alignment */
+#modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .modal-header {
     display: flex;
     justify-content: space-between;
@@ -87,7 +203,45 @@ dialog::backdrop {
 .close-btn {
     background: none;
     border: none;
-    font-size: 24px;
+    font-size: 44px;
     cursor: pointer;
-    color: #666;
+    color: #ffffff;
 }
+
+.player-names {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
+.player-names > :nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 50%;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.player-names > :nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 50%;
+    gap: 10px;
+}
+
+#modal-form > :nth-child(2) {
+    display: flex;
+    justify-content: center;
+}
+
+.reset-game-btn, .start-game-btn {
+    background-color: #ffffff;
+    border: none;
+    cursor: pointer;
+}
+
+.reset-game-btn:hover, .start-game-btn:hover {
+    background-color: #dbdbdb;
+}
+
