@@ -23,12 +23,7 @@ body {
     flex: 0 1 20%;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-}
-
-.reset-btn-gameBoard-space > :nth-child(2) {
-    flex: 0 1 30%;
-    aspect-ratio: 1;
+    justify-content: center;
 }
 
 .reset-btn-gameBoard-space > :nth-child(3) {
@@ -37,10 +32,10 @@ body {
 
 #gameBoard {
     display: flex;
-    height: 90%;
-    aspect-ratio: 1;
     align-items: stretch;
     flex-direction: column;
+    flex: 0 1 30%;
+    aspect-ratio: 1;
 
 }
 
