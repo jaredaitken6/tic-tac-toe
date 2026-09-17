@@ -1,10 +1,15 @@
 body {
     background-color: #3b3a3a;
     display: flex;
+    flex-direction: column;
     height: 100dvh;
     width: 100%;
     align-items: center;
     justify-content: center;
+}
+
+.verses-title {
+    color: white;
 }
 
 #gameBoard {
@@ -31,4 +36,40 @@ body {
 .unclickable {
   pointer-events: none; 
   opacity: 0.6;         
+}
+
+/* Modal styling */
+dialog {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    padding: 24px;
+    width: 90%;
+    max-width: 500px;
+}
+
+/* Backdrop (overlay behind the modal) */
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+}
+
+/* Modal content alignment */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.modal-header h2 {
+    margin: 0;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
 }

@@ -8,6 +8,31 @@
     <script src="./script.js" defer></script>
 </head>
 <body>
+    <!-- <h2 class="verses-title">Johnny vs Joey</h2> -->
+    <dialog id="myModal">
+        <div class="modal-header">
+            <h2>Tic Tac Toe</h2>
+            <button class="close-btn" id="closeModal">&times;</button>
+        </div>
+        <form id="modal-form" action="" method="POST">
+            
+            <div>
+                <label for="player1">Player 1 Name:</label>
+                <input type="text" id="player1" name="name" placeholder="Johnny" required>
+            </div>
+            <div>
+                <label for="player2">Player 2 Name:</label>
+                <input type="text" id="player2" name="name" placeholder="Joey" required>
+            </div>
+
+            
+            <div>
+                <button class="start-game-btn" type="button">Start Game</button>
+            </div>
+
+        </form>
+    </dialog>
+    <button class="reset-game-btn" type="button">Reset Game</button>
     <div id="gameBoard">
         <!-- <div class="square-row">
             <div id="square1" class="square"></div>

@@ -1,22 +1,34 @@
-// what are the different sections?
-/*
-there is a gameboard
-there are two players, each with their own symbol
-there are 9 separate spaces on the gameboard
-the two players take turns
-on a players turn, the player clicks one of the empty nine spots
-when the player clicks the spot, that players symbol gets put on the spot
-when a player has 3 of their symbols in a row, column or diagonally that player wins the game
-*/
-/*
-what has only one instance?
-    - game board
-what has more than one instance?
-    - players
-*/
+function modalStartBox() {
+    gameBoard.classList.add('unclickable');
+    // gameBoard.classList.remove('unclickable');
+    const modal = document.getElementById('myModal');
+    modal.showModal();
+    const closeBtn = document.getElementById('closeModal');
+    closeBtn.addEventListener('click', () => {
+            modal.close();
+        });
+    
+    const startGameBtn = document.querySelector('.start-game-btn');
+    startGameBtn.addEventListener('click', () => {
+            modal.close();
+            gameBoard.classList.remove('unclickable');
+            const versesTitle = document.createElement('h2');
+            versesTitle.classList.add('verses-title');
+            const player1Name = document.getElementById('player1').value;
+            const player2Name = document.getElementById('player2').value;
+            versesTitle.textContent = `${player1Name} vs. ${player2Name}`;
+            const body = document.querySelector('body');
+            const firstChildOfBody = body.firstElementChild;
+            if (firstChildOfBody.tagName === 'H2') {
+                firstChildOfBody?.remove();
+            }
+            body.prepend(versesTitle);
+        });
+}
 
     
 const setupGameBoard = (() => {
+    modalStartBox();
     const gameBoardParent = document.querySelector('#gameBoard');
     let squareCount = 0;
 
@@ -60,6 +72,12 @@ const gameControls = (() => {
     }
 
     clickSquare();
+
+    const resetGameButton = document.querySelector('.reset-game-btn');
+
+    resetGameButton.addEventListener('click', () => {
+        modalStartBox();
+    });
 
 })();
 
