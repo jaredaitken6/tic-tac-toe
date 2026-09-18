@@ -10,20 +10,23 @@ function modalStartBox() {
     
     const startGameBtn = document.querySelector('.start-game-btn');
     startGameBtn.addEventListener('click', () => {
-            modal.close();
-            gameBoard.classList.remove('unclickable');
-            const versesTitle = document.createElement('h2');
-            versesTitle.classList.add('verses-title');
-            const player1Name = document.getElementById('player1').value;
-            const player2Name = document.getElementById('player2').value;
-            versesTitle.textContent = `${player1Name} vs. ${player2Name}`;
-            const body = document.querySelector('body');
-            const firstChildOfBody = body.firstElementChild;
-            if (firstChildOfBody.tagName === 'H2') {
-                firstChildOfBody?.remove();
-            }
-            body.prepend(versesTitle);
-        });
+        const versesTitle = document.createElement('h2');
+        const player1Name = document.getElementById('player1').value;
+        const player2Name = document.getElementById('player2').value;
+        const body = document.querySelector('body');
+        const firstChildOfBody = body.firstElementChild;
+        if (player1Name === '' || player2Name === '') {
+            return;
+        }
+        modal.close();
+        gameBoard.classList.remove('unclickable');
+        versesTitle.classList.add('verses-title');
+        versesTitle.textContent = `${player1Name} vs. ${player2Name}`;
+        if (firstChildOfBody.tagName === 'H2') {
+            firstChildOfBody?.remove();
+        }
+        body.prepend(versesTitle);
+    });
 }
 
     
@@ -45,11 +48,23 @@ const setupGameBoard = (() => {
             childSquareRow.appendChild(childSquare);
         }
     }
+
+    // const squares = document.querySelectorAll('.square');
+
+    // square.forEach(div => {
+    // if (div.textContent.trim() === 'X') {
+    //     div.classList.add('highlight');
+    // }
+    // });
 })();
 
 
 const gameControls = (() => {
     let squares = document.querySelectorAll('.square');
+    let xSymbol = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 4L20 20M20 4L4 20" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>' + 'X';
+    let oSymbol = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>' + 'O';
+    // let oSymbol = '<img src="./svg/circle.svg" alt="Description">';
+    // let xSymbol = '<img src="./svg/x.svg" alt="Description">';
 
     function addSymbol(e) {
         const symbolArray = [...squares].map(element => element.textContent);
@@ -59,7 +74,18 @@ const gameControls = (() => {
             return;
         }
         
-        blankSquaresCount % 2 === 0 ? e.target.textContent = 'X' : e.target.textContent = 'O';
+        // blankSquaresCount % 2 === 0 ? e.target.innerHTML = xSymbol : e.target.innerHTML = oSymbol;
+
+        if (blankSquaresCount % 2 === 0) {
+            // e.target.textContent = 'X';
+            e.target.innerHTML = xSymbol;
+            // console.log(xSymbol.trim());
+            
+        } else {
+            // e.target.textContent = 'O';
+            e.target.innerHTML = oSymbol;
+            // console.log(xSymbol.trim());
+        }
 
         endGame.threeSymbols();
 
@@ -97,7 +123,7 @@ const endGame = (() => {
         const firstColumn = document.querySelectorAll('.square-row > :first-child');
         const secondColumn = document.querySelectorAll('.square-row >  *:nth-child(2)');
         const thirdColumn = document.querySelectorAll('.square-row >  *:nth-child(3)');
-        // console.log(thirdColumn[0].textContent);
+        // console.log(thirdColumn);
         // console.log(thirdRowChildren[0].textContent);
         
 
@@ -115,8 +141,9 @@ const endGame = (() => {
         const thirdRowArray = Array.from(thirdRowChildren, node => node.textContent);
         const thirdRowArrayIsFull = thirdRowArray.includes('');
         const thirdRowTheSame = thirdRowArray => thirdRowArray.every(val => val === thirdRowArray[0]);
+        // console.log(firstRowArray[2].trim());
         // console.log(secondRowTheSame(secondRowArray));
-        // console.log(thirdRowTheSame(thirdRowArray));
+        console.log(thirdRowTheSame(thirdRowArray));
         // console.log(!thirdRowArrayIsFull);
         if (thirdRowTheSame(thirdRowArray) && !thirdRowArrayIsFull || secondRowTheSame(secondRowArray) && !secondRowArrayIsFull || firstRowTheSame(firstRowArray) && !firstRowArrayIsFull)  {
             console.log("You win");

@@ -104,6 +104,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* end of fonts */
+/* start of custom css */
 
 body {
     background-color: #030303;
@@ -158,6 +159,7 @@ body {
     flex: 1;
     border: white 3px solid;
     color: white;
+    font-size: 0px;
 }
 
 .unclickable {
@@ -208,6 +210,10 @@ dialog::backdrop {
     color: #ffffff;
 }
 
+.close-btn:hover {
+    color: #dbdbdb;
+}
+
 .player-names {
     display: flex;
     align-items: center;
@@ -230,6 +236,14 @@ dialog::backdrop {
     gap: 10px;
 }
 
+.player-names > :nth-child(2) > input:nth-child(1)::placeholder {
+    color:rgba(0, 0, 0, 0.4);
+}
+
+.player-names > :nth-child(2) > input:nth-child(2)::placeholder {
+    color:rgba(0, 0, 0, 0.4);
+}
+
 #modal-form > :nth-child(2) {
     display: flex;
     justify-content: center;
@@ -239,9 +253,11 @@ dialog::backdrop {
     background-color: #ffffff;
     border: none;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .reset-game-btn:hover, .start-game-btn:hover {
     background-color: #dbdbdb;
 }
+
 
