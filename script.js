@@ -100,9 +100,9 @@ const gameControls = (() => {
     clickSquare();
 
     const resetGameButton = document.querySelector('.reset-game-btn');
-
     resetGameButton.addEventListener('click', () => {
         modalStartBox();
+
     });
 
 })();
