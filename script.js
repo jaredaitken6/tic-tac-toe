@@ -26,14 +26,42 @@ function modalStartBox() {
             firstChildOfBody?.remove();
         }
         body.prepend(versesTitle);
+
+        setupGameBoard();
+        gameControls();
     });
 }
 
+modalStartBox()
+
     
-const setupGameBoard = (() => {
-    modalStartBox();
+// const setupGameBoard = (() => {
+//     modalStartBox();
+//     const gameBoardParent = document.querySelector('#gameBoard');
+//     let squareCount = 0;
+
+//     for (let i = 0; i < 3; i++) {
+//         const childSquareRow = document.createElement('div');
+//         childSquareRow.classList.add('square-row');
+//         gameBoardParent.appendChild(childSquareRow);
+//             for (let i = 0; i < 3; i++) {
+//             squareCount++;
+//             const childSquare = document.createElement('div');
+//             childSquare.classList.add('square');
+//             childSquare.id = 'square' + squareCount;
+//             childSquare.textContent = '';
+//             childSquareRow.appendChild(childSquare);
+//         }
+//     }
+
+// })();
+
+function setupGameBoard() {
+    // modalStartBox();
     const gameBoardParent = document.querySelector('#gameBoard');
     let squareCount = 0;
+
+    gameBoardParent.replaceChildren();
 
     for (let i = 0; i < 3; i++) {
         const childSquareRow = document.createElement('div');
@@ -48,18 +76,9 @@ const setupGameBoard = (() => {
             childSquareRow.appendChild(childSquare);
         }
     }
+}
 
-    // const squares = document.querySelectorAll('.square');
-
-    // square.forEach(div => {
-    // if (div.textContent.trim() === 'X') {
-    //     div.classList.add('highlight');
-    // }
-    // });
-})();
-
-
-const gameControls = (() => {
+function gameControls()  {
     let squares = document.querySelectorAll('.square');
     let xSymbol = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 4L20 20M20 4L4 20" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>' + 'X';
     let oSymbol = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>' + 'O';
@@ -101,11 +120,10 @@ const gameControls = (() => {
 
     const resetGameButton = document.querySelector('.reset-game-btn');
     resetGameButton.addEventListener('click', () => {
-        modalStartBox();
-
+        setupGameBoard();
     });
 
-})();
+}
 
 
 const endGame = (() => {
